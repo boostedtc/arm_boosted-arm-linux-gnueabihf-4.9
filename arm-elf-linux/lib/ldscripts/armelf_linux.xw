@@ -3,7 +3,7 @@ OUTPUT_FORMAT("elf32-littlearm", "elf32-bigarm",
 	      "elf32-littlearm")
 OUTPUT_ARCH(arm)
 ENTRY(_start)
-SEARCH_DIR("/tmp/boosted-4.9-sdbtI/arm-linux-gnueabihf-4.9/arm-elf-linux/lib");
+SEARCH_DIR("/tmp/boosted-4.9-jwDN8/arm-linux-gnueabihf-4.9/arm-elf-linux/lib");
 SECTIONS
 {
   /* Read-only sections, merged into text segment: */

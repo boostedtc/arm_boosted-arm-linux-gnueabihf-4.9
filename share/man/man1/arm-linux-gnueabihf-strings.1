@@ -132,206 +132,109 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "WINDMC 1"
-.TH WINDMC 1 "2014-07-11" "binutils-2.24.51" "GNU Development Tools"
+.IX Title "STRINGS 1"
+.TH STRINGS 1 "2014-07-13" "binutils-2.24.51" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
 .nh
 .SH "NAME"
-windmc \- generates Windows message resources.
+strings \- print the strings of printable characters in files.
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-windmc [options] input-file
+strings [\fB\-afovV\fR] [\fB\-\fR\fImin-len\fR]
+        [\fB\-n\fR \fImin-len\fR] [\fB\-\-bytes=\fR\fImin-len\fR]
+        [\fB\-t\fR \fIradix\fR] [\fB\-\-radix=\fR\fIradix\fR]
+        [\fB\-e\fR \fIencoding\fR] [\fB\-\-encoding=\fR\fIencoding\fR]
+        [\fB\-\fR] [\fB\-\-all\fR] [\fB\-\-print\-file\-name\fR]
+        [\fB\-T\fR \fIbfdname\fR] [\fB\-\-target=\fR\fIbfdname\fR]
+        [\fB\-\-help\fR] [\fB\-\-version\fR] \fIfile\fR...
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
-\&\fBwindmc\fR reads message definitions from an input file (.mc) and
-translate them into a set of output files.  The output files may be of
-four kinds:
-.ie n .IP """h""" 4
-.el .IP "\f(CWh\fR" 4
-.IX Item "h"
-A C header file containing the message definitions.
-.ie n .IP """rc""" 4
-.el .IP "\f(CWrc\fR" 4
-.IX Item "rc"
-A resource file compilable by the \fBwindres\fR tool.
-.ie n .IP """bin""" 4
-.el .IP "\f(CWbin\fR" 4
-.IX Item "bin"
-One or more binary files containing the resource data for a specific
-message language.
-.ie n .IP """dbg""" 4
-.el .IP "\f(CWdbg\fR" 4
-.IX Item "dbg"
-A C include file that maps message id's to their symbolic name.
+For each \fIfile\fR given, \s-1GNU \s0\fBstrings\fR prints the printable
+character sequences that are at least 4 characters long (or the number
+given with the options below) and are followed by an unprintable
+character.  By default, it only prints the strings from the initialized
+and loaded sections of object files; for other types of files, it prints
+the strings from the whole file.
 .PP
-The exact description of these different formats is available in
-documentation from Microsoft.
-.PP
-When \fBwindmc\fR converts from the \f(CW\*(C`mc\*(C'\fR format to the \f(CW\*(C`bin\*(C'\fR
-format, \f(CW\*(C`rc\*(C'\fR, \f(CW\*(C`h\*(C'\fR, and optional \f(CW\*(C`dbg\*(C'\fR it is acting like the
-Windows Message Compiler.
+\&\fBstrings\fR is mainly useful for determining the contents of non-text
+files.
 .SH "OPTIONS"
 .IX Header "OPTIONS"
 .IP "\fB\-a\fR" 4
 .IX Item "-a"
 .PD 0
-.IP "\fB\-\-ascii_in\fR" 4
-.IX Item "--ascii_in"
+.IP "\fB\-\-all\fR" 4
+.IX Item "--all"
+.IP "\fB\-\fR" 4
+.IX Item "-"
 .PD
-Specifies that the input file specified is \s-1ASCII.\s0 This is the default
-behaviour.
-.IP "\fB\-A\fR" 4
-.IX Item "-A"
+Do not scan only the initialized and loaded sections of object files;
+scan the whole files.
+.IP "\fB\-f\fR" 4
+.IX Item "-f"
 .PD 0
-.IP "\fB\-\-ascii_out\fR" 4
-.IX Item "--ascii_out"
+.IP "\fB\-\-print\-file\-name\fR" 4
+.IX Item "--print-file-name"
 .PD
-Specifies that messages in the output \f(CW\*(C`bin\*(C'\fR files should be in \s-1ASCII\s0
-format.
-.IP "\fB\-b\fR" 4
-.IX Item "-b"
-.PD 0
-.IP "\fB\-\-binprefix\fR" 4
-.IX Item "--binprefix"
-.PD
-Specifies that \f(CW\*(C`bin\*(C'\fR filenames should have to be prefixed by the
-basename of the source file.
-.IP "\fB\-c\fR" 4
-.IX Item "-c"
-.PD 0
-.IP "\fB\-\-customflag\fR" 4
-.IX Item "--customflag"
-.PD
-Sets the customer bit in all message id's.
-.IP "\fB\-C\fR \fIcodepage\fR" 4
-.IX Item "-C codepage"
-.PD 0
-.IP "\fB\-\-codepage_in\fR \fIcodepage\fR" 4
-.IX Item "--codepage_in codepage"
-.PD
-Sets the default codepage to be used to convert input file to \s-1UTF16.\s0 The
-default is ocdepage 1252.
-.IP "\fB\-d\fR" 4
-.IX Item "-d"
-.PD 0
-.IP "\fB\-\-decimal_values\fR" 4
-.IX Item "--decimal_values"
-.PD
-Outputs the constants in the header file in decimal. Default is using
-hexadecimal output.
-.IP "\fB\-e\fR \fIext\fR" 4
-.IX Item "-e ext"
-.PD 0
-.IP "\fB\-\-extension\fR \fIext\fR" 4
-.IX Item "--extension ext"
-.PD
-The extension for the header file. The default is .h extension.
-.IP "\fB\-F\fR \fItarget\fR" 4
-.IX Item "-F target"
-.PD 0
-.IP "\fB\-\-target\fR \fItarget\fR" 4
-.IX Item "--target target"
-.PD
-Specify the \s-1BFD\s0 format to use for a bin file as output.  This
-is a \s-1BFD\s0 target name; you can use the \fB\-\-help\fR option to see a list
-of supported targets.  Normally \fBwindmc\fR will use the default
-format, which is the first one listed by the \fB\-\-help\fR option.
-.IP "\fB\-h\fR \fIpath\fR" 4
-.IX Item "-h path"
-.PD 0
-.IP "\fB\-\-headerdir\fR \fIpath\fR" 4
-.IX Item "--headerdir path"
-.PD
-The target directory of the generated header file. The default is the
-current directory.
-.IP "\fB\-H\fR" 4
-.IX Item "-H"
-.PD 0
+Print the name of the file before each string.
 .IP "\fB\-\-help\fR" 4
 .IX Item "--help"
-.PD
-Displays a list of command line options and then exits.
-.IP "\fB\-m\fR \fIcharacters\fR" 4
-.IX Item "-m characters"
+Print a summary of the program usage on the standard output and exit.
+.IP "\fB\-\fR\fImin-len\fR" 4
+.IX Item "-min-len"
 .PD 0
-.IP "\fB\-\-maxlength\fR \fIcharacters\fR" 4
-.IX Item "--maxlength characters"
+.IP "\fB\-n\fR \fImin-len\fR" 4
+.IX Item "-n min-len"
+.IP "\fB\-\-bytes=\fR\fImin-len\fR" 4
+.IX Item "--bytes=min-len"
 .PD
-Instructs \fBwindmc\fR to generate a warning if the length
-of any message exceeds the number specified.
-.IP "\fB\-n\fR" 4
-.IX Item "-n"
-.PD 0
-.IP "\fB\-\-nullterminate\fR" 4
-.IX Item "--nullterminate"
-.PD
-Terminate message text in \f(CW\*(C`bin\*(C'\fR files by zero. By default they are
-terminated by \s-1CR/LF.\s0
+Print sequences of characters that are at least \fImin-len\fR characters
+long, instead of the default 4.
 .IP "\fB\-o\fR" 4
 .IX Item "-o"
+Like \fB\-t o\fR.  Some other versions of \fBstrings\fR have \fB\-o\fR
+act like \fB\-t d\fR instead.  Since we can not be compatible with both
+ways, we simply chose one.
+.IP "\fB\-t\fR \fIradix\fR" 4
+.IX Item "-t radix"
 .PD 0
-.IP "\fB\-\-hresult_use\fR" 4
-.IX Item "--hresult_use"
+.IP "\fB\-\-radix=\fR\fIradix\fR" 4
+.IX Item "--radix=radix"
 .PD
-Not yet implemented. Instructs \f(CW\*(C`windmc\*(C'\fR to generate an \s-1OLE2\s0 header
-file, using \s-1HRESULT\s0 definitions. Status codes are used if the flag is not
-specified.
-.IP "\fB\-O\fR \fIcodepage\fR" 4
-.IX Item "-O codepage"
+Print the offset within the file before each string.  The single
+character argument specifies the radix of the offset\-\-\-\fBo\fR for
+octal, \fBx\fR for hexadecimal, or \fBd\fR for decimal.
+.IP "\fB\-e\fR \fIencoding\fR" 4
+.IX Item "-e encoding"
 .PD 0
-.IP "\fB\-\-codepage_out\fR \fIcodepage\fR" 4
-.IX Item "--codepage_out codepage"
+.IP "\fB\-\-encoding=\fR\fIencoding\fR" 4
+.IX Item "--encoding=encoding"
 .PD
-Sets the default codepage to be used to output text files. The default
-is ocdepage 1252.
-.IP "\fB\-r\fR \fIpath\fR" 4
-.IX Item "-r path"
+Select the character encoding of the strings that are to be found.
+Possible values for \fIencoding\fR are: \fBs\fR = single\-7\-bit\-byte
+characters (\s-1ASCII, ISO 8859,\s0 etc., default), \fBS\fR =
+single\-8\-bit\-byte characters, \fBb\fR = 16\-bit bigendian, \fBl\fR =
+16\-bit littleendian, \fBB\fR = 32\-bit bigendian, \fBL\fR = 32\-bit
+littleendian.  Useful for finding wide character strings. (\fBl\fR
+and \fBb\fR apply to, for example, Unicode \s-1UTF\-16/UCS\-2\s0 encodings).
+.IP "\fB\-T\fR \fIbfdname\fR" 4
+.IX Item "-T bfdname"
 .PD 0
-.IP "\fB\-\-rcdir\fR \fIpath\fR" 4
-.IX Item "--rcdir path"
+.IP "\fB\-\-target=\fR\fIbfdname\fR" 4
+.IX Item "--target=bfdname"
 .PD
-The target directory for the generated \f(CW\*(C`rc\*(C'\fR script and the generated
-\&\f(CW\*(C`bin\*(C'\fR files that the resource compiler script includes. The default
-is the current directory.
-.IP "\fB\-u\fR" 4
-.IX Item "-u"
-.PD 0
-.IP "\fB\-\-unicode_in\fR" 4
-.IX Item "--unicode_in"
-.PD
-Specifies that the input file is \s-1UTF16.\s0
-.IP "\fB\-U\fR" 4
-.IX Item "-U"
-.PD 0
-.IP "\fB\-\-unicode_out\fR" 4
-.IX Item "--unicode_out"
-.PD
-Specifies that messages in the output \f(CW\*(C`bin\*(C'\fR file should be in \s-1UTF16\s0
-format. This is the default behaviour.
+Specify an object code format other than your system's default format.
 .IP "\fB\-v\fR" 4
 .IX Item "-v"
 .PD 0
-.IP "\fB\-\-verbose\fR" 4
-.IX Item "--verbose"
-.PD
-Enable verbose mode.
 .IP "\fB\-V\fR" 4
 .IX Item "-V"
-.PD 0
 .IP "\fB\-\-version\fR" 4
 .IX Item "--version"
 .PD
-Prints the version number for \fBwindmc\fR.
-.IP "\fB\-x\fR \fIpath\fR" 4
-.IX Item "-x path"
-.PD 0
-.IP "\fB\-\-xdgb\fR \fIpath\fR" 4
-.IX Item "--xdgb path"
-.PD
-The path of the \f(CW\*(C`dbg\*(C'\fR C include file that maps message id's to the
-symbolic name. No such file is generated without specifying the switch.
+Print the program version number on the standard output and exit.
 .IP "\fB@\fR\fIfile\fR" 4
 .IX Item "@file"
 Read command-line options from \fIfile\fR.  The options read are
@@ -347,7 +250,8 @@ with a backslash.  The \fIfile\fR may itself contain additional
 @\fIfile\fR options; any such options will be processed recursively.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-the Info entries for \fIbinutils\fR.
+\&\fIar\fR\|(1), \fInm\fR\|(1), \fIobjdump\fR\|(1), \fIranlib\fR\|(1), \fIreadelf\fR\|(1)
+and the Info entries for \fIbinutils\fR.
 .SH "COPYRIGHT"
 .IX Header "COPYRIGHT"
 Copyright (c) 1991\-2014 Free Software Foundation, Inc.

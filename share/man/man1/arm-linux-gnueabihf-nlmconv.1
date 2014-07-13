@@ -132,73 +132,97 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "RANLIB 1"
-.TH RANLIB 1 "2014-07-11" "binutils-2.24.51" "GNU Development Tools"
+.IX Title "NLMCONV 1"
+.TH NLMCONV 1 "2014-07-13" "binutils-2.24.51" "GNU Development Tools"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
 .nh
 .SH "NAME"
-ranlib \- generate index to archive.
+nlmconv \- converts object code into an NLM.
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-ranlib [\fB\-\-plugin\fR \fIname\fR] [\fB\-DhHvVt\fR] \fIarchive\fR
+nlmconv [\fB\-I\fR \fIbfdname\fR|\fB\-\-input\-target=\fR\fIbfdname\fR]
+        [\fB\-O\fR \fIbfdname\fR|\fB\-\-output\-target=\fR\fIbfdname\fR]
+        [\fB\-T\fR \fIheaderfile\fR|\fB\-\-header\-file=\fR\fIheaderfile\fR]
+        [\fB\-d\fR|\fB\-\-debug\fR] [\fB\-l\fR \fIlinker\fR|\fB\-\-linker=\fR\fIlinker\fR]
+        [\fB\-h\fR|\fB\-\-help\fR] [\fB\-V\fR|\fB\-\-version\fR]
+        \fIinfile\fR \fIoutfile\fR
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
-\&\fBranlib\fR generates an index to the contents of an archive and
-stores it in the archive.  The index lists each symbol defined by a
-member of an archive that is a relocatable object file.
+\&\fBnlmconv\fR converts the relocatable \fBi386\fR object file
+\&\fIinfile\fR into the NetWare Loadable Module \fIoutfile\fR, optionally
+reading \fIheaderfile\fR for \s-1NLM\s0 header information.  For instructions
+on writing the \s-1NLM\s0 command file language used in header files, see the
+\&\fBlinkers\fR section, \fB\s-1NLMLINK\s0\fR in particular, of the \fI\s-1NLM\s0
+Development and Tools Overview\fR, which is part of the \s-1NLM\s0 Software
+Developer's Kit (\*(L"\s-1NLM SDK\*(R"\s0), available from Novell, Inc.
+\&\fBnlmconv\fR uses the \s-1GNU\s0 Binary File Descriptor library to read
+\&\fIinfile\fR;
 .PP
-You may use \fBnm \-s\fR or \fBnm \-\-print\-armap\fR to list this index.
-.PP
-An archive with such an index speeds up linking to the library and
-allows routines in the library to call each other without regard to
-their placement in the archive.
-.PP
-The \s-1GNU \s0\fBranlib\fR program is another form of \s-1GNU \s0\fBar\fR; running
-\&\fBranlib\fR is completely equivalent to executing \fBar \-s\fR.
+\&\fBnlmconv\fR can perform a link step.  In other words, you can list
+more than one object file for input if you list them in the definitions
+file (rather than simply specifying one input file on the command line).
+In this case, \fBnlmconv\fR calls the linker for you.
 .SH "OPTIONS"
 .IX Header "OPTIONS"
+.IP "\fB\-I\fR \fIbfdname\fR" 4
+.IX Item "-I bfdname"
+.PD 0
+.IP "\fB\-\-input\-target=\fR\fIbfdname\fR" 4
+.IX Item "--input-target=bfdname"
+.PD
+Object format of the input file.  \fBnlmconv\fR can usually determine
+the format of a given file (so no default is necessary).
+.IP "\fB\-O\fR \fIbfdname\fR" 4
+.IX Item "-O bfdname"
+.PD 0
+.IP "\fB\-\-output\-target=\fR\fIbfdname\fR" 4
+.IX Item "--output-target=bfdname"
+.PD
+Object format of the output file.  \fBnlmconv\fR infers the output
+format based on the input format, e.g. for a \fBi386\fR input file the
+output format is \fBnlm32\-i386\fR.
+.IP "\fB\-T\fR \fIheaderfile\fR" 4
+.IX Item "-T headerfile"
+.PD 0
+.IP "\fB\-\-header\-file=\fR\fIheaderfile\fR" 4
+.IX Item "--header-file=headerfile"
+.PD
+Reads \fIheaderfile\fR for \s-1NLM\s0 header information.  For instructions on
+writing the \s-1NLM\s0 command file language used in header files, see see the
+\&\fBlinkers\fR section, of the \fI\s-1NLM\s0 Development and Tools
+Overview\fR, which is part of the \s-1NLM\s0 Software Developer's Kit, available
+from Novell, Inc.
+.IP "\fB\-d\fR" 4
+.IX Item "-d"
+.PD 0
+.IP "\fB\-\-debug\fR" 4
+.IX Item "--debug"
+.PD
+Displays (on standard error) the linker command line used by \fBnlmconv\fR.
+.IP "\fB\-l\fR \fIlinker\fR" 4
+.IX Item "-l linker"
+.PD 0
+.IP "\fB\-\-linker=\fR\fIlinker\fR" 4
+.IX Item "--linker=linker"
+.PD
+Use \fIlinker\fR for any linking.  \fIlinker\fR can be an absolute or a
+relative pathname.
 .IP "\fB\-h\fR" 4
 .IX Item "-h"
 .PD 0
-.IP "\fB\-H\fR" 4
-.IX Item "-H"
 .IP "\fB\-\-help\fR" 4
 .IX Item "--help"
 .PD
-Show usage information for \fBranlib\fR.
-.IP "\fB\-v\fR" 4
-.IX Item "-v"
-.PD 0
+Prints a usage summary.
 .IP "\fB\-V\fR" 4
 .IX Item "-V"
+.PD 0
 .IP "\fB\-\-version\fR" 4
 .IX Item "--version"
 .PD
-Show the version number of \fBranlib\fR.
-.IP "\fB\-D\fR" 4
-.IX Item "-D"
-Operate in \fIdeterministic\fR mode.  The symbol map archive member's
-header will show zero for the \s-1UID, GID,\s0 and timestamp.  When this
-option is used, multiple runs will produce identical output files.
-.Sp
-If \fIbinutils\fR was configured with
-\&\fB\-\-enable\-deterministic\-archives\fR, then this mode is on by
-default.  It can be disabled with the \fB\-U\fR option, described
-below.
-.IP "\fB\-t\fR" 4
-.IX Item "-t"
-Update the timestamp of the symbol map of an archive.
-.IP "\fB\-U\fR" 4
-.IX Item "-U"
-Do \fInot\fR operate in \fIdeterministic\fR mode.  This is the
-inverse of the \fB\-D\fR option, above: the archive index will get
-actual \s-1UID, GID,\s0 timestamp, and file mode values.
-.Sp
-If \fIbinutils\fR was configured \fIwithout\fR
-\&\fB\-\-enable\-deterministic\-archives\fR, then this mode is on by
-default.
+Prints the version number for \fBnlmconv\fR.
 .IP "\fB@\fR\fIfile\fR" 4
 .IX Item "@file"
 Read command-line options from \fIfile\fR.  The options read are
@@ -214,7 +238,7 @@ with a backslash.  The \fIfile\fR may itself contain additional
 @\fIfile\fR options; any such options will be processed recursively.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-\&\fIar\fR\|(1), \fInm\fR\|(1), and the Info entries for \fIbinutils\fR.
+the Info entries for \fIbinutils\fR.
 .SH "COPYRIGHT"
 .IX Header "COPYRIGHT"
 Copyright (c) 1991\-2014 Free Software Foundation, Inc.
