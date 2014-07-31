@@ -4,7 +4,7 @@
 ;;; Don't parse this file wihout knowing GCC gengtype internals.
 ;;; This file should be parsed by the same gengtype which wrote it.
 
-(!version  "4.9.1 20140712 (prerelease)")
+(!version  "4.9.1")
 (!srcdir  "../.././../gcc/gcc-Boosted/gcc")
 (!languages 9 ada c cp fortran go java lto objc objcp)
 (!fileslist 194
@@ -17717,7 +17717,7 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1013 nil  gc_unused "anonymous:../.././../gcc/gcc-Boosted/gcc/config/arm/arm.c:29577"nil 
+ (!type struct 1013 nil  gc_unused "anonymous:../.././../gcc/gcc-Boosted/gcc/config/arm/arm.c:29688"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -17725,30 +17725,30 @@
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1015 nil  gc_unused "anonymous:../.././../gcc/gcc-Boosted/gcc/config/arm/arm.c:23118"nil 
+ (!type struct 1015 nil  gc_unused "anonymous:../.././../gcc/gcc-Boosted/gcc/config/arm/arm.c:23145"nil 
   (!fields 0 )
   nil 0 nil nil )
  
  (!type user_struct 1016 nil  gc_unused "hash_table<libcall_hasher>"
-  (!srcfileloc  "config/arm/arm.c" 4659)
+  (!srcfileloc  "config/arm/arm.c" 4664)
   (!fields 1 
    (!pair  "libcall_hasher"
     (!type struct 1017 nil  gc_unused "libcall_hasher"
-     (!srcfileloc  "config/arm/arm.c" 4659)
+     (!srcfileloc  "config/arm/arm.c" 4664)
      (!fields 0 )
      nil 511 nil nil )
-    (!srcfileloc  "config/arm/arm.c" 4659)
+    (!srcfileloc  "config/arm/arm.c" 4664)
     nil )
   )
  )
  
  (!type already_seen 1017)
  
- (!type struct 1018 nil  gc_unused "anonymous:../.././../gcc/gcc-Boosted/gcc/config/arm/arm.c:2989"nil 
+ (!type struct 1018 nil  gc_unused "anonymous:../.././../gcc/gcc-Boosted/gcc/config/arm/arm.c:2994"nil 
   (!fields 0 )
   nil 0 nil nil )
  
- (!type struct 1019 nil  gc_unused "anonymous:../.././../gcc/gcc-Boosted/gcc/config/arm/arm.c:1995"nil 
+ (!type struct 1019 nil  gc_unused "anonymous:../.././../gcc/gcc-Boosted/gcc/config/arm/arm.c:2000"nil 
   (!fields 0 )
   nil 0 nil nil )
  
@@ -23330,55 +23330,55 @@
   nil )
  (!pair  "arm_mangle_map_entry"
   (!type already_seen 1013)
-  (!srcfileloc  "config/arm/arm.c" 29581)
+  (!srcfileloc  "config/arm/arm.c" 29692)
   nil )
  (!pair  "builtin_arg"
   (!type already_seen 9)
-  (!srcfileloc  "config/arm/arm.c" 24950)
+  (!srcfileloc  "config/arm/arm.c" 25041)
   nil )
  (!pair  "neon_builtin_datum"
   (!type already_seen 1015)
-  (!srcfileloc  "config/arm/arm.c" 23124)
+  (!srcfileloc  "config/arm/arm.c" 23151)
   nil )
  (!pair  "neon_itype"
   (!type already_seen 9)
-  (!srcfileloc  "config/arm/arm.c" 23116)
+  (!srcfileloc  "config/arm/arm.c" 23143)
   nil )
  (!pair  "neon_builtin_type_mode"
   (!type already_seen 9)
-  (!srcfileloc  "config/arm/arm.c" 23048)
+  (!srcfileloc  "config/arm/arm.c" 23074)
   nil )
  (!pair  "arm_pragma_enum"
   (!type already_seen 9)
-  (!srcfileloc  "config/arm/arm.c" 5935)
+  (!srcfileloc  "config/arm/arm.c" 5940)
   nil )
  (!pair  "libcall_table_type"
   (!type already_seen 1016)
-  (!srcfileloc  "config/arm/arm.c" 4659)
+  (!srcfileloc  "config/arm/arm.c" 4664)
   nil )
  (!pair  "libcall_hasher"
   (!type already_seen 1017)
-  (!srcfileloc  "config/arm/arm.c" 4659)
+  (!srcfileloc  "config/arm/arm.c" 4664)
   nil )
  (!pair  "hash_table<libcall_hasher>"
   (!type already_seen 1016)
-  (!srcfileloc  "config/arm/arm.c" 4659)
+  (!srcfileloc  "config/arm/arm.c" 4664)
   nil )
  (!pair  "isr_attribute_arg"
   (!type already_seen 1018)
-  (!srcfileloc  "config/arm/arm.c" 2993)
+  (!srcfileloc  "config/arm/arm.c" 2998)
   nil )
  (!pair  "arm_fixed_mode_set"
   (!type already_seen 1019)
-  (!srcfileloc  "config/arm/arm.c" 1998)
+  (!srcfileloc  "config/arm/arm.c" 2003)
   nil )
  (!pair  "Mfix"
   (!type already_seen 1023)
-  (!srcfileloc  "config/arm/arm.c" 66)
+  (!srcfileloc  "config/arm/arm.c" 67)
   nil )
  (!pair  "Mnode"
   (!type already_seen 1024)
-  (!srcfileloc  "config/arm/arm.c" 65)
+  (!srcfileloc  "config/arm/arm.c" 66)
   nil )
  (!pair  "omp_context"
   (!type already_seen 1035)
@@ -26023,11 +26023,11 @@
   nil )
  (!pair  "java_iface_lookup_fn"
   (!type already_seen 5)
-  (!srcfileloc  "cp/call.c" 7337)
+  (!srcfileloc  "cp/call.c" 7349)
   nil )
  (!pair  "default_arg_context"
   (!type already_seen 45)
-  (!srcfileloc  "cp/call.c" 6501)
+  (!srcfileloc  "cp/call.c" 6513)
   nil )
  (!pair  "unemitted_tinfo_decls"
   (!type already_seen 45)
@@ -26559,19 +26559,19 @@
   (!type array 1585 nil  gc_used "ARM_BUILTIN_MAX" 
    (!type already_seen 5)
   )
-  (!srcfileloc  "config/arm/arm.c" 23505)
+  (!srcfileloc  "config/arm/arm.c" 23535)
   nil )
  (!pair  "tls_get_addr_libfunc"
   (!type already_seen 136)
-  (!srcfileloc  "config/arm/arm.c" 7272)
+  (!srcfileloc  "config/arm/arm.c" 7277)
   nil )
  (!pair  "pic_labelno"
   (!type already_seen 9)
-  (!srcfileloc  "config/arm/arm.c" 6531)
+  (!srcfileloc  "config/arm/arm.c" 6536)
   nil )
  (!pair  "va_list_type"
   (!type already_seen 5)
-  (!srcfileloc  "config/arm/arm.c" 2322)
+  (!srcfileloc  "config/arm/arm.c" 2327)
   nil )
  (!pair  "stack_chk_fail_decl"
   (!type already_seen 5)
